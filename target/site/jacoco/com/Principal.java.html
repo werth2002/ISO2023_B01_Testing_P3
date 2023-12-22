@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Principal.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JunitExample Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com</a> &gt; <span class="el_source">Principal.java</span></div><h1>Principal.java</h1><pre class="source lang-java linenums">package com;
+
+<span class="nc" id="L3">public class Principal {</span>
+
+    public static void main(String[] args) {
+        try {
+<span class="nc" id="L7">            ManejadorIO.mostrarMensaje(&quot;Ingrese los datos del primer cuerpo:&quot;);</span>
+<span class="nc" id="L8">            Cuerpo cuerpo1 = InterfazUsuario.leerCuerpo(ManejadorIO.getScanner());</span>
+
+<span class="nc" id="L10">            ManejadorIO.mostrarMensaje(&quot;Ingrese los datos del segundo cuerpo:&quot;);</span>
+<span class="nc" id="L11">            Cuerpo cuerpo2 = InterfazUsuario.leerCuerpo(ManejadorIO.getScanner());</span>
+
+<span class="nc" id="L13">            double distancia = InterfazUsuario.leerDistancia(ManejadorIO.getScanner());</span>
+
+<span class="nc" id="L15">            double fuerzaGravedad = calcularFuerza(cuerpo1, cuerpo2, distancia);</span>
+
+<span class="nc" id="L17">            InterfazUsuario.mostrarResultado(fuerzaGravedad);</span>
+
+<span class="nc" id="L19">        } catch (Exception e) {</span>
+<span class="nc" id="L20">            ManejadorIO.mostrarMensaje(&quot;Ocurrió un error inesperado: &quot; + e.getMessage());</span>
+<span class="nc" id="L21">        }</span>
+<span class="nc" id="L22">    }</span>
+
+    static double calcularFuerza(Cuerpo cuerpo1, Cuerpo cuerpo2, double distancia) {
+<span class="fc" id="L25">        double G = 6.672 * Math.pow(10, -11); // Constante de gravitación universal de Newton</span>
+
+        try {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            if (distancia == 0) {</span>
+<span class="fc" id="L29">                throw new IllegalArgumentException(&quot;La distancia no puede ser cero, los cuerpos no pueden estar en la misma posición.&quot;);</span>
+            }
+<span class="fc" id="L31">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L32">            ManejadorIO.mostrarMensaje(&quot;Error: &quot; + e.getMessage());</span>
+<span class="fc" id="L33">            throw e;</span>
+<span class="fc" id="L34">        }</span>
+
+<span class="fc" id="L36">        return (G * cuerpo1.getMasa() * cuerpo2.getMasa()) / Math.pow(distancia, 2);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
